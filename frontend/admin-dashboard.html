@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Dr. Sara Galal Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="admin-body">
+  <div class="dashboard-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="navbar-brand">
+          <div class="brand-icon">🦷</div>
+          <div class="brand-text">
+            <h1>Dr. Sara Galal</h1>
+            <span>Admin Panel</span>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="active" data-section="overview"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="#" data-section="appointments"><span class="nav-icon">📅</span> Appointments</a>
+        <a href="#" data-section="patients"><span class="nav-icon">👥</span> Patients</a>
+        <a href="#" data-section="services"><span class="nav-icon">🦷</span> Services</a>
+        <a href="index.html" target="_blank"><span class="nav-icon">🌐</span> View Website</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar" id="adminAvatar">S</div>
+          <div class="admin-info-text">
+            <h4 id="adminName">Admin</h4>
+            <p id="adminEmail">admin@drsaragalal.com</p>
+          </div>
+        </div>
+        <button id="logoutBtn" class="btn btn-outline btn-sm" style="width:100%;color:var(--gray-400);border-color:var(--gray-600)">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="dashboard-header">
+        <div>
+          <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSubtitle">Welcome back! Here is your clinic overview.</p>
+        </div>
+      </div>
+
+      <!-- Overview Section -->
+      <section class="dashboard-section active" id="overview">
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-card-icon blue">👥</div>
+            <div class="stat-card-info">
+              <h3 id="statPatients">0</h3>
+              <p>Total Patients</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon purple">📅</div>
+            <div class="stat-card-info">
+              <h3 id="statAppointments">0</h3>
+              <p>Total Appointments</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange">📋</div>
+            <div class="stat-card-info">
+              <h3 id="statToday">0</h3>
+              <p>Today's Appointments</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon green">✓</div>
+            <div class="stat-card-info">
+              <h3 id="statCompleted">0</h3>
+              <p>Completed Treatments</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon orange">⏳</div>
+            <div class="stat-card-info">
+              <h3 id="statPending">0</h3>
+              <p>Pending Appointments</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="charts-row">
+          <div class="chart-card">
+            <h3>Appointments by Status</h3>
+            <div class="chart-container"><canvas id="statusChart"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <h3>Monthly Appointments</h3>
+            <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appointments Section -->
+      <section class="dashboard-section" id="appointments">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>All Appointments</h3>
+            <div class="panel-actions">
+              <input type="text" id="appointmentSearch" class="search-input" placeholder="Search appointments...">
+              <select id="appointmentFilter" class="filter-select">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Patient</th>
+                  <th>Service</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Patients Section -->
+      <section class="dashboard-section" id="patients">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>All Patients</h3>
+            <div class="panel-actions">
+              <input type="text" id="patientSearch" class="search-input" placeholder="Search patients...">
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="patientsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="dashboard-section" id="services">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>Clinic Services</h3>
+            <div class="panel-actions">
+              <button id="addServiceBtn" class="btn btn-primary btn-sm">+ Add Service</button>
+            </div>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Duration</th>
+                  <th>Price Range</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="servicesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Patient Edit Modal -->
+  <div class="modal-overlay" id="patientModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="patientModalTitle">Edit Patient</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="patientForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullName" class="form-control" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" name="phone" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" name="age" class="form-control" min="1" max="120" required>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select name="gender" class="form-control" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Service Modal -->
+  <div class="modal-overlay" id="serviceModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="serviceModalTitle">Add Service</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <form id="serviceForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control" rows="3" required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Duration (minutes)</label>
+              <input type="number" name="duration" class="form-control" min="15" required>
+            </div>
+            <div class="form-group">
+              <label>Price Range</label>
+              <input type="text" name="priceRange" class="form-control" placeholder="$100 - $200" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Image</label>
+            <input type="file" id="serviceImage" name="image" class="form-control" accept="image/*">
+            <div class="image-preview" id="serviceImagePreview"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Service</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

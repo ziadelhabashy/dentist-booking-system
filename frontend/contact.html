@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Dr. Sara Galal Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <header class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Contact</span></nav>
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Reach out or visit our clinic today.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <h4>Clinic Location</h4>
+              <p>123 Smile Avenue, Maadi<br>Cairo, Egypt 11728</p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon">📞</div>
+            <div>
+              <h4>Phone Number</h4>
+              <p><a href="tel:+201001234567">+20 100 123 4567</a></p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <h4>Email Address</h4>
+              <p><a href="mailto:info@drsaragalal.com">info@drsaragalal.com</a></p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-icon">🕐</div>
+            <div>
+              <h4>Working Hours</h4>
+              <p>Monday – Friday: 9:00 AM – 6:00 PM<br>Saturday: 9:00 AM – 3:00 PM<br>Sunday: Closed</p>
+            </div>
+          </div>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.789!2d31.25!3d29.96!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDU3JzM2LjAiTiAzMcKwMTUnMDAuMCJF!5e0!3m2!1sen!2seg!4v1"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Clinic Location Map">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h2 style="font-size:1.5rem;font-weight:700;color:var(--gray-900);margin-bottom:0.5rem">Send a Message</h2>
+          <p style="color:var(--gray-500);margin-bottom:1.5rem">Fill out the form and we'll get back to you within 24 hours.</p>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Your full name">
+              <div class="form-error"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="you@email.com">
+                <div class="form-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="+20 100 000 0000">
+                <div class="form-error"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message <span class="required">*</span></label>
+              <textarea id="message" name="message" class="form-control" rows="5" placeholder="How can we help you?"></textarea>
+              <div class="form-error"></div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

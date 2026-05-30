@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Dr. Sara Galal Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="brand-icon">🦷</div>
+        <h1>Admin Login</h1>
+        <p>Dr. Sara Galal Dental Clinic Dashboard</p>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="admin@drsaragalal.com" autocomplete="email">
+          <div class="form-error"></div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" autocomplete="current-password">
+          <div class="form-error"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Sign In</button>
+      </form>
+      <div class="login-footer">
+        <a href="index.html">← Back to Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/admin-auth.js"></script>
+</body>
+</html>

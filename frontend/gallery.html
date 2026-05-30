@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Dr. Sara Galal Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <header class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Home</a> / <span>Gallery</span></nav>
+      <h1>Our Gallery</h1>
+      <p>Explore our clinic, treatments, and transformative before & after results.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-tabs">
+        <button class="gallery-tab active" data-filter="all">All</button>
+        <button class="gallery-tab" data-filter="before-after">Before & After</button>
+        <button class="gallery-tab" data-filter="clinic">Clinic Photos</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    const galleryItems = [
+      { category: 'before-after', icon: '✨', label: 'Teeth Whitening – Before & After', gradient: 'linear-gradient(135deg,#e0f7fa,#b2ebf2)' },
+      { category: 'before-after', icon: '😁', label: 'Smile Makeover Result', gradient: 'linear-gradient(135deg,#e7f1ff,#bbdefb)' },
+      { category: 'before-after', icon: '💎', label: 'Dental Veneers Transformation', gradient: 'linear-gradient(135deg,#f3e5f5,#e1bee7)' },
+      { category: 'before-after', icon: '🦷', label: 'Orthodontic Treatment Result', gradient: 'linear-gradient(135deg,#e8f5e9,#c8e6c9)' },
+      { category: 'clinic', icon: '🏥', label: 'Modern Reception Area', gradient: 'linear-gradient(135deg,#fff3e0,#ffe0b2)' },
+      { category: 'clinic', icon: '🪑', label: 'Treatment Room', gradient: 'linear-gradient(135deg,#fce4ec,#f8bbd0)' },
+      { category: 'clinic', icon: '🔬', label: 'Advanced Equipment', gradient: 'linear-gradient(135deg,#e0f2f1,#b2dfdb)' },
+      { category: 'clinic', icon: '☕', label: 'Patient Waiting Lounge', gradient: 'linear-gradient(135deg,#f1f8e9,#dcedc8)' },
+      { category: 'before-after', icon: '👑', label: 'Dental Crown Restoration', gradient: 'linear-gradient(135deg,#e3f2fd,#90caf9)' },
+    ];
+
+    let currentFilter = 'all';
+
+    const renderGallery = () => {
+      const grid = document.getElementById('galleryGrid');
+      const filtered = currentFilter === 'all'
+        ? galleryItems
+        : galleryItems.filter((item) => item.category === currentFilter);
+
+      grid.innerHTML = filtered.map((item) => `
+        <div class="gallery-item" data-category="${item.category}">
+          <div class="gallery-placeholder" style="background:${item.gradient}">
+            <span>${item.icon}</span>
+          </div>
+          <div class="gallery-overlay"><span>${item.label}</span></div>
+        </div>
+      `).join('');
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initLayout('gallery.html');
+      renderGallery();
+
+      document.querySelectorAll('.gallery-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-tab').forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentFilter = tab.dataset.filter;
+          renderGallery();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
